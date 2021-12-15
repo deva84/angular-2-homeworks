@@ -1,0 +1,21 @@
+<div class="product">
+  <span class="title">{{name}}</span>
+  <div class="description">{{description}}</div>
+  <span class="price">{{price}} $</span>
+  <span *ngIf="isAvailable; else notAvailable" class="availability">Available</span>
+  <ng-template #notAvailable>
+    <span class="out-of-stock">Out of stock</span>
+  </ng-template>
+  <div class="category-wrapper">
+    <i class="fas fa-tags"></i>
+    <span class="category">{{category}}</span>
+  </div>
+  <div class="hover-layer"></div>
+  <button
+    (click)="onAddToCart()"
+    [disabled]="!isAvailable"
+    [class.btn-disabled]="!isAvailable"
+    class="add-to-cart">
+    ADD TO CART
+  </button>
+</div>

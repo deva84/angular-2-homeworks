@@ -1,0 +1,24 @@
+<div class="title-wrapper">
+  <i class="fas fa-cart-arrow-down"></i>
+  <span class="cart-list-title">Cart</span>
+</div>
+<div class="cart-list-wrapper">
+  <div *ngIf="cartItems.length > 0; else emptyCart" class="cart-list">
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Amount</th>
+      </tr>
+      <tr *ngFor="let item of cartItems; trackBy: trackByItems" >
+        <td>{{item.name}}</td>
+        <td>{{item.quantity}}</td>
+        <td>{{item.amount}}</td>
+      </tr>
+    </table>
+  </div>
+  <ng-template #emptyCart>
+    <div class="empty-cart">Cart is empty, but you can always change it :)</div>
+  </ng-template>
+</div>
+
