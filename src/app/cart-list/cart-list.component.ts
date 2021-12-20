@@ -8,7 +8,7 @@ import {CartService} from "../services/cart.service";
   styleUrls: ['./cart-list.component.less']
 })
 export class CartListComponent implements OnInit {
-  public cartItems: ICartItem[] = [];
+  cartItems: ICartItem[] = [];
 
   constructor(private cartService: CartService) {}
 
@@ -16,7 +16,7 @@ export class CartListComponent implements OnInit {
     this.cartItems = this.cartService.getCartItems();
   }
 
-  public trackByItems(index: number, item: ICartItem): string {
+  trackByItems(index: number, item: ICartItem): string {
     return item.name;
   }
 
