@@ -7,7 +7,7 @@ import * as productsListData from './../data/products.json';
 })
 export class ProductService {
 
-  public getProducts(): IProductModel[] {
+  getProducts(): IProductModel[] {
     const data = productsListData;
     return data.items as IProductModel[]
   }

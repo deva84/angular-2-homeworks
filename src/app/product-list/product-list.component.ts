@@ -8,7 +8,7 @@ import {IProductModel} from "../app.models";
   styleUrls: ['./product-list.component.less']
 })
 export class ProductListComponent implements OnInit {
-  public products: IProductModel[] = [];
+  products: IProductModel[] = [];
 
   constructor(private productService: ProductService) { }
 

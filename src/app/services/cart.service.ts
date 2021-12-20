@@ -5,14 +5,14 @@ import {ICartItem} from "../app.models";
   providedIn: 'root'
 })
 export class CartService {
-  public cartList: ICartItem[] = [];
-  public totalAmount: number = 0;
+  cartList: ICartItem[] = [];
+  totalAmount: number = 0;
 
-  public getCartItems(): ICartItem[] {
+  getCartItems(): ICartItem[] {
     return this.cartList;
   }
 
-  public addItemToCartList(name: string, price: number): void {
+  addItemToCartList(name: string, price: number): void {
     const itemToAdd = this.cartList.find(item => item.name === name);
     if (!itemToAdd) {
       this.cartList.push({name: name, quantity: 1, amount: price})
