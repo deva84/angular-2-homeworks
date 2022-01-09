@@ -71,7 +71,6 @@
 - CartItemComponent
 - DisableDirective
 - HighlightDirective
-- Cart total items quantity calculation
 
 ### Refactored
 
