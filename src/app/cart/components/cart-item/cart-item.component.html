@@ -1,0 +1,27 @@
+<div class="cart-item">
+  <span class="cart-item-name">{{name}}
+  </span>
+  <div class="inner-wrapper">
+    <div class="cart-item-quantity">
+    <span [appDisableIcon]="quantity <= 1"
+      class="subtract-item icon"
+      (click)="onSubtractItem()"
+    >
+      <i class="far fa-minus-square"></i>
+    </span>
+      <input
+        type="number"
+        class="cart-item-quantity-input"
+        [value]="quantity"
+        disabled
+      >
+      <span class="add-item icon" (click)="onAddItem()">
+      <i class="far fa-plus-square"></i>
+    </span>
+    </div>
+    <span class="cart-item-amount">{{amount}} $</span>
+    <span class="delete-item icon" (click)="onDeleteItem()">
+    <i class="far fa-times-circle"></i>
+  </span>
+  </div>
+</div>

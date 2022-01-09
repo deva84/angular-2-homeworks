@@ -1,0 +1,37 @@
+<div class="title-wrapper">
+  <i class="fas fa-cart-arrow-down"></i>
+  <span class="cart-list-title">Cart</span>
+</div>
+<div class="cart-list-wrapper">
+  <div *ngIf="cartItems.length > 0; else emptyCart" class="cart-list">
+    <div class="cart-items-wrapper">
+      <app-cart-item
+        *ngFor="let item of cartItems; trackBy: trackByItems"
+        [id]="item.id"
+        [name]="item.name"
+        [quantity]="item.quantity"
+        [amount]="item.amount"
+        (itemQuantityIncreased)="onItemQuantityIncreased($event)"
+        (itemQuantityDecreased)="onItemQuantityDecreased($event)"
+        (itemDeleted)="onItemDeleted($event)"
+      >
+      </app-cart-item>
+    </div>
+    <div class="preorder-wrapper">
+      <h2 class="preorder-title">TOTAL</h2>
+      <div class="total-amount-wrapper">
+        <span class="total-amount-text"><span class="number">{{numberOfItems}}</span> product(s) in total for </span>
+        <span class="total-amount-cash"><span class="number">{{totalAmount}}</span> $</span>
+      </div>
+      <div class="preorder-button-wrapper">
+        <button class="process-order" (click)="onProcessOrder()">PROCESS ORDER</button>
+      </div>
+    </div>
+  </div>
+  <ng-template #emptyCart>
+    <div class="empty-cart">
+      <p class="empty-cart-content">Cart is empty, but you can always change it :)</p>
+    </div>
+  </ng-template>
+</div>
+
