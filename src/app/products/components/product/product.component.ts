@@ -8,6 +8,7 @@ import { Category, IProductModel } from '../../models/products.models';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductComponent {
+  // Может быть рассмотреть вариант передачи объекта, чтобы уменьшить количество инпутов?
   @Input() id: number | undefined;
   @Input() name: string | undefined;
   @Input() description: string | undefined;

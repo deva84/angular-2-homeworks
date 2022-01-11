@@ -7,6 +7,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CartItemComponent {
+  // Тут тоже можно передать объект
   @Input() id!: number;
   @Input() name!: string;
   @Input() quantity!: number;
@@ -16,10 +17,12 @@ export class CartItemComponent {
   @Output() itemQuantityDecreased = new EventEmitter<number>();
   @Output() itemDeleted = new EventEmitter<number>();
 
+  // может назвать так же как в сервисе onItemQuantityDecrease?
   onSubtractItem(): void {
     this.itemQuantityDecreased.emit(this.id);
   }
 
+  // может назвать так как в сервисе onItemQuantityIncrease?
   onAddItem(): void {
     this.itemQuantityIncreased.emit(this.id);
   }
