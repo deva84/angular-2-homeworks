@@ -31,6 +31,7 @@ export class CartService {
     return Number((quantity * price).toFixed(2));
   }
 
+  // может быть этот метод должен быть приватным?
   calculateCartAmount(): void {
     this.totalAmount = Number(
       this.cartList
