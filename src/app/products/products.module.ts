@@ -10,7 +10,5 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [FirstComponent, ProductComponent, ProductListComponent],
   imports: [CommonModule, SharedModule],
   exports: [ProductListComponent],
-  // нет необходимости, уже зарегистрирован
-  // providers: [ProductService],
 })
 export class ProductsModule {}

@@ -9,7 +9,5 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [CartListComponent, CartItemComponent],
   imports: [CommonModule, SharedModule],
   exports: [CartListComponent],
-  // нет необходимости, уже зарегистрирован
-  // providers: [CartService],
 })
 export class CartModule {}

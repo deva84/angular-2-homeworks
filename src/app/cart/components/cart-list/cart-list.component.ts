@@ -24,8 +24,8 @@ export class CartListComponent implements OnInit, DoCheck {
     this.numberOfItems = this.cartService.getNumberOfItems();
   }
 
-  trackByItems(index: number, item: ICartItem): string {
-    return item.name;
+  trackByItems(index: number, item: ICartItem): number {
+    return item.id;
   }
 
   onItemQuantityIncreased(id: number): void {

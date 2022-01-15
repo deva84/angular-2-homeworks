@@ -1,4 +1,13 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
+import { ICartItem } from '../../models/cart.models';
 
 @Component({
   selector: 'app-cart-item',
@@ -7,27 +16,21 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CartItemComponent {
-  // Тут тоже можно передать объект
-  @Input() id!: number;
-  @Input() name!: string;
-  @Input() quantity!: number;
-  @Input() amount!: number;
+  @Input() item!: ICartItem;
 
   @Output() itemQuantityIncreased = new EventEmitter<number>();
   @Output() itemQuantityDecreased = new EventEmitter<number>();
   @Output() itemDeleted = new EventEmitter<number>();
 
-  // может назвать так же как в сервисе onItemQuantityDecrease?
-  onSubtractItem(): void {
-    this.itemQuantityDecreased.emit(this.id);
+  onItemQuantityDecrease(): void {
+    this.itemQuantityDecreased.emit(this.item.id);
   }
 
-  // может назвать так как в сервисе onItemQuantityIncrease?
-  onAddItem(): void {
-    this.itemQuantityIncreased.emit(this.id);
+  onItemQuantityIncrease(): void {
+    this.itemQuantityIncreased.emit(this.item.id);
   }
 
   onDeleteItem(): void {
-    this.itemDeleted.emit(this.id);
+    this.itemDeleted.emit(this.item.id);
   }
 }

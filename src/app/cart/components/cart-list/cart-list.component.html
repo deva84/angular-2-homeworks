@@ -7,10 +7,7 @@
     <div class="cart-items-wrapper">
       <app-cart-item
         *ngFor="let item of cartItems; trackBy: trackByItems"
-        [id]="item.id"
-        [name]="item.name"
-        [quantity]="item.quantity"
-        [amount]="item.amount"
+        [item]="item"
         (itemQuantityIncreased)="onItemQuantityIncreased($event)"
         (itemQuantityDecreased)="onItemQuantityDecreased($event)"
         (itemDeleted)="onItemDeleted($event)"

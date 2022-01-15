@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import { ICartItem } from '../models/cart.models';
+import { ICartItemData } from '../models/cart.models';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-  cartList: ICartItem[] = [];
+  cartList: ICartItemData[] = [];
   totalAmount = 0;
   numberOfItems = 0;
 
-  getCartItems(): ICartItem[] {
+  getCartItems(): ICartItemData[] {
     return this.cartList;
   }
 
@@ -17,10 +17,21 @@ export class CartService {
     const itemToAdd = this.cartList.find((item) => item.id === id);
 
     if (!itemToAdd) {
-      this.cartList.push({ id: id, name: name, quantity: 1, price: price, amount: price });
+      this.cartList = [
+        ...this.cartList,
+        { id: id, name: name, quantity: 1, price: price, amount: price },
+      ];
     } else {
-      itemToAdd.quantity += 1;
-      itemToAdd.amount = this.getItemAmount(itemToAdd.quantity, price);
+      this.cartList = this.cartList.map((item) => {
+        const itemCopy = { ...item };
+        if (itemCopy.id !== id) {
+          return itemCopy;
+        } else {
+          const itemQuantity = itemToAdd.quantity + 1;
+          const itemAmount = this.getItemAmount(itemQuantity, price);
+          return { ...itemToAdd, quantity: itemQuantity, amount: itemAmount };
+        }
+      });
     }
 
     this.calculateCartAmount();
@@ -31,8 +42,7 @@ export class CartService {
     return Number((quantity * price).toFixed(2));
   }
 
-  // может быть этот метод должен быть приватным?
-  calculateCartAmount(): void {
+  private calculateCartAmount(): void {
     this.totalAmount = Number(
       this.cartList
         .map((item) => item.amount)
@@ -41,7 +51,7 @@ export class CartService {
     );
   }
 
-  calculateNumberOfItems(): void {
+  private calculateNumberOfItems(): void {
     this.numberOfItems = this.cartList.map((item) => item.quantity).reduce((a, b) => a + b, 0);
   }
 

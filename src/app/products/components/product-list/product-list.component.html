@@ -4,12 +4,7 @@
   <app-first></app-first>
   <app-product
     *ngFor="let item of products"
-    [id]="item.id"
-    [name]="item.name"
-    [description]="item.description"
-    [price]="item.price"
-    [category]="item.category"
-    [isAvailable]="item.isAvailable"
+    [product]="item"
     (itemAddedToCart)="onItemAddedToCart($event)"
   ></app-product>
 </div>
