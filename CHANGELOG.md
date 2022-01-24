@@ -78,3 +78,33 @@
 - AppComponent
 - ChangeDetectionStrategy for FirstComponent, ProductComponent, CartItemComponent
 
+## [1.0.7] - 2021-01-13
+
+### Refactored 
+
+- Components and services as per comments
+- CartService methods
+
+## [1.0.8] - 2021-01-19
+
+### Added
+
+- New methods to CartService
+- ConfigOptionsService
+- ConstantsService
+
+## [1.0.9] - 2021-01-23
+
+### Added
+
+- GeneratorService
+- GeneratorFactory, generatedString
+- genID
+- extended GeneratorService with getNewID method
+- LocalStorageService
+- TransformDirective (/shared/directives/transform)
+- appTransform Directive to <h1> in ProductListComponent and to <span> (.cart-list-title) in CartListComponent
+
+### Refactored 
+
+- injected GeneratorFactory, generatedString, ConstantsService, LocalStorageService to FirstComponent  

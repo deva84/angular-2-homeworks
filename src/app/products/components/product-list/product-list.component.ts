@@ -18,10 +18,6 @@ export class ProductListComponent implements OnInit {
   }
 
   onItemAddedToCart(item: Partial<IProductModel>): void {
-    this.cartService.addItemToCartList(
-      item.id as number,
-      item.name as string,
-      item.price as number
-    );
+    this.cartService.addProduct(item.id as number, item.name as string, item.price as number);
   }
 }
