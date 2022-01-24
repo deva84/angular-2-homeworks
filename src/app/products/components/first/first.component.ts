@@ -1,5 +1,15 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, OnInit, Optional } from '@angular/core';
 import { Category } from '../../models/products.models';
+import { constants, ConstantsService } from '../../../core/services/constants/constants.service';
+import { GeneratorFactory } from '../../../core/services/generator/generator.factory';
+import {
+  generatedString,
+  GeneratorService,
+} from '../../../core/services/generator/generator.service';
+import {
+  LocalStorageService,
+  localStore,
+} from '../../../core/services/local-storage/local-storage.service';
 
 @Component({
   selector: 'app-first',
@@ -30,13 +40,39 @@ import { Category } from '../../models/products.models';
   `,
   styleUrls: ['./first.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    { provide: ConstantsService, useValue: constants },
+    { provide: generatedString, useFactory: GeneratorFactory(), deps: [GeneratorService] },
+    { provide: LocalStorageService, useValue: localStore },
+  ],
 })
-export class FirstComponent {
+export class FirstComponent implements OnInit {
   public name = 'Milk';
   public description = '3% fat';
   public price = 1.2;
   public category = Category.DAIRY;
   public isAvailable = false;
+
+  constructor(
+    @Optional() private constantsService: ConstantsService,
+    @Optional() private generatorService: GeneratorService,
+    @Inject(generatedString) private gs: string,
+    @Optional() private ls: LocalStorageService
+  ) {}
+
+  ngOnInit() {
+    Object.entries(this.constantsService.getAppData()).forEach(([key, value]) =>
+      console.log(`${key}: ${value}`)
+    );
+    console.log(
+      `Generator Service generate: ${this.generatorService.generate(20)}\nGenerated string: ${
+        this.gs
+      }\n GeneratorService new ID: ${this.generatorService.getNewID()}`
+    );
+
+    this.ls.setItem({ greeting: 'hello world' });
+    console.log('Local Storage Service: ', this.ls.getItem('greeting'));
+  }
 
   onAddToCart(): void {
     console.log(`${this.name} has been added to your cart!`);

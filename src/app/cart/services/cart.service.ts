@@ -1,97 +1,104 @@
 import { Injectable } from '@angular/core';
-import { ICartItem } from '../models/cart.models';
+import { ICartItemData } from '../models/cart.models';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-  cartList: ICartItem[] = [];
-  totalAmount = 0;
-  numberOfItems = 0;
+  cartProducts: ICartItemData[] = [];
+  totalSum = 0;
+  totalQuantity = 0;
+  isEmptyCart = true;
 
-  getCartItems(): ICartItem[] {
-    return this.cartList;
+  getProducts(): ICartItemData[] {
+    return this.cartProducts;
   }
 
-  addItemToCartList(id: number, name: string, price: number): void {
-    const itemToAdd = this.cartList.find((item) => item.id === id);
+  addProduct(id: number, name: string, price: number, quantity = 1): void {
+    const itemToAdd = this.cartProducts.find((item) => item.id === id);
 
     if (!itemToAdd) {
-      this.cartList.push({ id: id, name: name, quantity: 1, price: price, amount: price });
+      this.cartProducts = [
+        ...this.cartProducts,
+        { id: id, name: name, quantity: quantity, price: price, amount: price },
+      ];
     } else {
-      itemToAdd.quantity += 1;
-      itemToAdd.amount = this.getItemAmount(itemToAdd.quantity, price);
+      this.cartProducts = this.cartProducts.map((item) => {
+        const itemCopy = { ...item };
+        if (itemCopy.id !== id) {
+          return itemCopy;
+        } else {
+          const itemQuantity = itemToAdd.quantity + 1;
+          const itemAmount = this.getItemAmount(itemQuantity, price);
+          return { ...itemToAdd, quantity: itemQuantity, amount: itemAmount };
+        }
+      });
     }
-
-    this.calculateCartAmount();
-    this.calculateNumberOfItems();
+    this.updateCartData();
   }
 
   getItemAmount(quantity: number, price: number): number {
     return Number((quantity * price).toFixed(2));
   }
 
-  // может быть этот метод должен быть приватным?
-  calculateCartAmount(): void {
-    this.totalAmount = Number(
-      this.cartList
+  private updateCartData(): void {
+    this.totalSum = Number(
+      this.cartProducts
         .map((item) => item.amount)
         .reduce((a, b) => a + b, 0)
         .toFixed(2)
     );
-  }
-
-  calculateNumberOfItems(): void {
-    this.numberOfItems = this.cartList.map((item) => item.quantity).reduce((a, b) => a + b, 0);
+    this.totalQuantity = this.cartProducts.map((item) => item.quantity).reduce((a, b) => a + b, 0);
+    this.isEmptyCart = this.totalQuantity > 0;
   }
 
   getTotalCartAmount(): number {
-    return this.totalAmount;
+    return this.totalSum;
   }
 
   getNumberOfItems(): number {
-    return this.numberOfItems;
+    return this.totalQuantity;
   }
 
-  increaseItemQuantity(id: number): void {
-    this.cartList = this.cartList.map((item) => {
+  increaseQuantity(id: number): void {
+    this.cartProducts = this.cartProducts.map((item) => {
       let itemCopy = item;
 
       if (itemCopy.id === id) {
-        itemCopy.quantity += 1;
-        itemCopy.amount = this.getItemAmount(itemCopy.quantity, itemCopy.price);
+        itemCopy = this.changeQuantity(itemCopy, 1);
       }
       return itemCopy;
     });
-
-    this.calculateCartAmount();
-    this.calculateNumberOfItems();
+    this.updateCartData();
   }
 
-  decreaseItemQuantity(id: number): void {
-    this.cartList = this.cartList.map((item) => {
+  decreaseQuantity(id: number): void {
+    this.cartProducts = this.cartProducts.map((item) => {
       let itemCopy = item;
 
       if (itemCopy.id === id) {
         if (itemCopy.quantity > 1) {
-          itemCopy.quantity -= 1;
-          itemCopy.amount = this.getItemAmount(itemCopy.quantity, itemCopy.price);
+          itemCopy = this.changeQuantity(itemCopy, -1);
         }
       }
       return itemCopy;
     });
-
-    this.calculateCartAmount();
-    this.calculateNumberOfItems();
+    this.updateCartData();
   }
 
-  deleteItemFromCartList(id: number): void {
-    this.cartList.splice(
-      this.cartList.findIndex((item) => item.id === id),
-      1
-    );
+  private changeQuantity(item: ICartItemData, quantityDelta: number): ICartItemData {
+    const itemCopy = { ...item };
+    itemCopy.quantity += quantityDelta;
+    itemCopy.amount = this.getItemAmount(itemCopy.quantity, itemCopy.price);
+    return itemCopy;
+  }
 
-    this.calculateCartAmount();
-    this.calculateNumberOfItems();
+  removeProduct(id: number): void {
+    this.cartProducts = this.cartProducts.filter((item) => item.id !== id);
+    this.updateCartData();
+  }
+
+  removeAllProducts(): void {
+    this.cartProducts = [];
   }
 }

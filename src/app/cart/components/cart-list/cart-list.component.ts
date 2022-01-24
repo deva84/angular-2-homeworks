@@ -15,29 +15,29 @@ export class CartListComponent implements OnInit, DoCheck {
   constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
-    this.cartItems = this.cartService.getCartItems();
+    this.cartItems = this.cartService.getProducts();
   }
 
   ngDoCheck(): void {
-    this.cartItems = this.cartService.getCartItems();
+    this.cartItems = this.cartService.getProducts();
     this.totalAmount = this.cartService.getTotalCartAmount();
     this.numberOfItems = this.cartService.getNumberOfItems();
   }
 
-  trackByItems(index: number, item: ICartItem): string {
-    return item.name;
+  trackByItems(index: number, item: ICartItem): number {
+    return item.id;
   }
 
-  onItemQuantityIncreased(id: number): void {
-    this.cartService.increaseItemQuantity(id);
+  onIncreaseQuantity(id: number): void {
+    this.cartService.increaseQuantity(id);
   }
 
-  onItemQuantityDecreased(id: number): void {
-    this.cartService.decreaseItemQuantity(id);
+  onDecreaseQuantity(id: number): void {
+    this.cartService.decreaseQuantity(id);
   }
 
-  onItemDeleted(id: number): void {
-    this.cartService.deleteItemFromCartList(id);
+  onRemoveProduct(id: number): void {
+    this.cartService.removeProduct(id);
   }
 
   onProcessOrder(): void {

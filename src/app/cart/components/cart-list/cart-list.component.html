@@ -1,19 +1,16 @@
 <div class="title-wrapper">
   <i class="fas fa-cart-arrow-down"></i>
-  <span class="cart-list-title">Cart</span>
+  <span appTransform [transformColor]="'#5D3FD3'" class="cart-list-title">Cart</span>
 </div>
 <div class="cart-list-wrapper">
   <div *ngIf="cartItems.length > 0; else emptyCart" class="cart-list">
     <div class="cart-items-wrapper">
       <app-cart-item
         *ngFor="let item of cartItems; trackBy: trackByItems"
-        [id]="item.id"
-        [name]="item.name"
-        [quantity]="item.quantity"
-        [amount]="item.amount"
-        (itemQuantityIncreased)="onItemQuantityIncreased($event)"
-        (itemQuantityDecreased)="onItemQuantityDecreased($event)"
-        (itemDeleted)="onItemDeleted($event)"
+        [item]="item"
+        (itemQuantityIncreased)="onIncreaseQuantity($event)"
+        (itemQuantityDecreased)="onDecreaseQuantity($event)"
+        (itemDeleted)="onRemoveProduct($event)"
       >
       </app-cart-item>
     </div>
