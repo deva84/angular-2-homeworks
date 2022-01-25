@@ -5,10 +5,10 @@ import { ConfigModel } from '../../core.models';
   providedIn: 'root',
 })
 export class ConfigOptionsService {
-  private config: Partial<ConfigModel> | undefined;
+  private config: Partial<ConfigModel> = {};
 
   setConfig(data: Partial<ConfigModel>): void {
-    this.config = data;
+    this.config = {...this.config, ...data};
   }
 
   getConfig(): Partial<ConfigModel> | undefined {
