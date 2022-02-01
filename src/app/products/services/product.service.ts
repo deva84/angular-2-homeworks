@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import * as productsListData from '../../core/data/products.json';
 import { IProductModel } from '../models/products.models';
+import { Observable, Subscriber } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
-  getProducts(): IProductModel[] {
+  getProducts(): Observable<IProductModel[]> {
     const data = productsListData;
-    return data.items as IProductModel[];
+    return new Observable((subscriber: Subscriber<IProductModel[]>) =>
+      subscriber.next(data.items as IProductModel[])
+    );
   }
 }
