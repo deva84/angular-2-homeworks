@@ -1,12 +1,12 @@
 export enum Category {
-  MEAT = 'Meat',
-  SEAFOOD = 'Seafood',
-  DELICATESSEN = 'Delicatessen',
-  GREEN_GROCERY = 'Green Grocery',
-  BREAD = 'Bread',
-  BEVERAGES = 'Beverages',
-  HEALTH_BEAUTY = 'Health & Beauty',
-  DAIRY = 'Dairy',
+  MEAT = 'meat',
+  SEAFOOD = 'seafood',
+  DELICATESSEN = 'delicatessen',
+  GREEN_GROCERY = 'green grocery',
+  BREAD = 'bread',
+  BEVERAGES = 'beverages',
+  HEALTH_BEAUTY = 'health & beauty',
+  DAIRY = 'dairy',
 }
 
 export interface IProductModel {

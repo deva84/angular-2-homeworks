@@ -17,14 +17,14 @@ import {
     <div class="product">
       <span class="title">{{ name }}</span>
       <div class="description">{{ description }}</div>
-      <span class="price">{{ price }} $</span>
+      <span class="price">{{ price | currency: 'USD' }}</span>
       <span *ngIf="isAvailable; else notAvailable" class="availability">Available</span>
       <ng-template #notAvailable>
         <span class="out-of-stock">Out of stock</span>
       </ng-template>
       <div class="category-wrapper">
         <i class="fas fa-tags"></i>
-        <span class="category">{{ category }}</span>
+        <span class="category">{{ category | titlecase }}</span>
       </div>
       <div class="hover-layer" appHighlight>
         <button
@@ -67,11 +67,11 @@ export class FirstComponent implements OnInit {
     console.log(
       `Generator Service generate: ${this.generatorService.generate(20)}\nGenerated string: ${
         this.gs
-      }\n GeneratorService new ID: ${this.generatorService.getNewID()}`
+      }\nGeneratorService new ID: ${this.generatorService.getNewID()}`
     );
 
-    this.ls.setItem({ greeting: 'hello world' });
-    console.log('Local Storage Service: ', this.ls.getItem('greeting'));
+    this.ls.setItem('initial-item', { greeting: 'hello world' });
+    console.log('Local Storage Service: ', this.ls.getItem('initial-item'));
   }
 
   onAddToCart(): void {

@@ -103,8 +103,37 @@
 - extended GeneratorService with getNewID method
 - LocalStorageService
 - TransformDirective (/shared/directives/transform)
-- appTransform Directive to <h1> in ProductListComponent and to <span> (.cart-list-title) in CartListComponent
+- appTransform Directive to h1 in ProductListComponent and to span (.cart-list-title) in CartListComponent
 
 ### Refactored 
 
 - injected GeneratorFactory, generatedString, ConstantsService, LocalStorageService to FirstComponent  
+
+## [1.0.10] - 2021-01-25
+
+### Refactored
+
+- converted category names to a lower case and added titlecase pipe
+- replaced dollar sign with a currency pipe in templates of CartItemComponent, CartListComponent, FirstComponent, ProductComponent;
+- CartService, CartListComponent
+
+## [1.0.11] - 2021-01-28
+
+### Refactored
+
+- getProducts method to return Observable
+
+### Added
+
+- orderBy pipe implementation
+
+## [1.0.12] - 2021-02-01
+
+### Refactored
+
+- SharedModule
+
+### Added
+
+- new properties and methods to CartListComponent for sorting and deletion all goods in the cart 
+

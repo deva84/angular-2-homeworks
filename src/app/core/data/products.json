@@ -5,7 +5,7 @@
       "name": "Cookies",
       "description": "Contain chocolate crunchies",
       "price": 2,
-      "category": "Bread",
+      "category": "bread",
       "isAvailable": true
     },
     {
@@ -13,7 +13,7 @@
       "name": "Beef",
       "description": "Local farm production",
       "price": 4.7,
-      "category": "Meat",
+      "category": "meat",
       "isAvailable": true
     },
     {
@@ -21,7 +21,7 @@
       "name": "Eggs",
       "description": "Local organic dairy",
       "price": 1.3,
-      "category": "Dairy",
+      "category": "dairy",
       "isAvailable": true
     },
     {
@@ -29,7 +29,7 @@
       "name": "Lemonade",
       "description": "Contains orange juice",
       "price": 0.7,
-      "category": "Beverages",
+      "category": "beverages",
       "isAvailable": true
     },
     {
@@ -37,7 +37,7 @@
       "name": "Spring onions",
       "description": "Super fresh foods",
       "price": 0.3,
-      "category": "Green Grocery",
+      "category": "green grocery",
       "isAvailable": true
     },
     {
@@ -45,7 +45,7 @@
       "name": "Red Caviar",
       "description": "Baltic salmon caviar",
       "price": 10.5,
-      "category": "Delicatessen",
+      "category": "delicatessen",
       "isAvailable": true
     },
     {
@@ -53,7 +53,7 @@
       "name": "Shrimps",
       "description": "Tiger shrimps from Indian Ocean",
       "price": 6.4,
-      "category": "Seafood",
+      "category": "seafood",
       "isAvailable": false
     },
     {
@@ -61,7 +61,31 @@
       "name": "Buckwheat",
       "description": "Whole grain, organic",
       "price": 2.3,
-      "category": "Health & Beauty",
+      "category": "health & beauty",
+      "isAvailable": true
+    },
+    {
+      "id": 9,
+      "name": "Buckwheat",
+      "description": "Green buckwheat rich with fiber",
+      "price": 2.7,
+      "category": "health & beauty",
+      "isAvailable": true
+    },
+    {
+      "id": 10,
+      "name": "Buckwheat",
+      "description": "Imported dry flakes for everyday meal",
+      "price": 1.7,
+      "category": "health & beauty",
+      "isAvailable": true
+    },
+    {
+      "id": 11,
+      "name": "Oysters",
+      "description": "Limited import from France",
+      "price": 15.9,
+      "category": "seafood",
       "isAvailable": true
     }
   ]

@@ -5,10 +5,10 @@ import { ICartItemData } from '../models/cart.models';
   providedIn: 'root',
 })
 export class CartService {
-  cartProducts: ICartItemData[] = [];
-  totalSum = 0;
-  totalQuantity = 0;
-  isEmptyCart = true;
+  private cartProducts: ICartItemData[] = [];
+  private totalSum = 0;
+  private totalQuantity = 0;
+  private isEmptyCart = true;
 
   getProducts(): ICartItemData[] {
     return this.cartProducts;
@@ -38,18 +38,13 @@ export class CartService {
   }
 
   getItemAmount(quantity: number, price: number): number {
-    return Number((quantity * price).toFixed(2));
+    return quantity * price;
   }
 
   private updateCartData(): void {
-    this.totalSum = Number(
-      this.cartProducts
-        .map((item) => item.amount)
-        .reduce((a, b) => a + b, 0)
-        .toFixed(2)
-    );
+    this.totalSum = this.cartProducts.map((item) => item.amount).reduce((a, b) => a + b, 0);
     this.totalQuantity = this.cartProducts.map((item) => item.quantity).reduce((a, b) => a + b, 0);
-    this.isEmptyCart = this.totalQuantity > 0;
+    this.isEmptyCart = this.totalQuantity <= 0;
   }
 
   getTotalCartAmount(): number {
@@ -100,5 +95,10 @@ export class CartService {
 
   removeAllProducts(): void {
     this.cartProducts = [];
+    this.updateCartData();
+  }
+
+  isCartEmpty(): boolean {
+    return this.isEmptyCart;
   }
 }

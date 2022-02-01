@@ -3,10 +3,47 @@
   <span appTransform [transformColor]="'#5D3FD3'" class="cart-list-title">Cart</span>
 </div>
 <div class="cart-list-wrapper">
-  <div *ngIf="cartItems.length > 0; else emptyCart" class="cart-list">
+  <div *ngIf="!isEmptyCart; else emptyCart" class="cart-list">
     <div class="cart-items-wrapper">
+      <div class="cart-items-header">
+        <div class="select-wrapper" (click)="onOpenMenu()">
+          <div class="select-element">
+            <input #sortBy class="cart-items-sort" value="Sort By" readonly>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div #checkboxes class="checkbox-wrapper">
+            <label
+              *ngFor="let checkboxItem of sortCheckboxes"
+              [for]="checkboxItem"
+              (change)="onSortOptionSelect($event)"
+            >
+              <input type="checkbox" [id]="checkboxItem">
+              {{checkboxItem | titlecase}}
+            </label>
+            <div class="btn-wrapper">
+              <button class="sort-items-submit" (click)="onSubmitSort()">Submit</button>
+            </div>
+          </div>
+        </div>
+        <div class="sort-order">
+          <label *ngFor="let orderItem of orderOptions">
+            <input
+              type="radio"
+              name="order"
+              [value]="orderItem"
+              [checked]="currentOrder===orderItem"
+              (change)="onToggleOrder($event)"
+            >
+            {{orderItem | lowercase | titlecase}}
+          </label>
+        </div>
+        <button class="cart-items-clear" (click)="onRemoveAllProducts()">
+          <i class="fas fa-times"></i>
+          Clear Cart
+        </button>
+      </div>
       <app-cart-item
-        *ngFor="let item of cartItems; trackBy: trackByItems"
+        *ngFor="let item of cartItems | orderBy:sortProperties:currentOrder; trackBy: trackByItems"
         [item]="item"
         (itemQuantityIncreased)="onIncreaseQuantity($event)"
         (itemQuantityDecreased)="onDecreaseQuantity($event)"
@@ -17,9 +54,8 @@
     <div class="preorder-wrapper">
       <h2 class="preorder-title">TOTAL</h2>
       <div class="total-amount-wrapper">
-        <!-- В следующем задании можно тут задействовать пайп для красивого вывода единственного и множественного ичсла -->
         <span class="total-amount-text"><span class="number">{{numberOfItems}}</span> product(s) in total for </span>
-        <span class="total-amount-cash"><span class="number">{{totalAmount}}</span> $</span>
+        <span class="total-amount-cash number">{{totalAmount | currency: 'USD'}}</span>
       </div>
       <div class="preorder-button-wrapper">
         <button class="process-order" (click)="onProcessOrder()">PROCESS ORDER</button>

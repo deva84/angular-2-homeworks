@@ -19,7 +19,7 @@
       <i class="far fa-plus-square"></i>
     </span>
     </div>
-    <span class="cart-item-amount">{{item.amount}} $</span>
+    <span class="cart-item-amount">{{item.amount | currency: 'USD'}}</span>
     <span class="delete-item icon" (click)="onDeleteItem()">
     <i class="far fa-times-circle"></i>
   </span>
