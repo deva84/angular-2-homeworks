@@ -12,6 +12,7 @@ export class OrderByPipe implements PipeTransform {
     return items.sort((a, b) => {
       for (let i = 0; i < properties.length; i++) {
         if (a[properties[i]] > b[properties[i]]) {
+          // эти операторы return прерывают цикл? если да, то можно обойтись без for просто сортироват по первому свойству
           return order === 'ASC' ? 1 : -1;
         }
         if (a[properties[i]] < b[properties[i]]) {
