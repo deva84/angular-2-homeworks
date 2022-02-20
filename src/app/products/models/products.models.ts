@@ -16,4 +16,8 @@ export interface IProductModel {
   price: number;
   category: Category;
   isAvailable: boolean;
+  img_large: string;
+  img_medium: string;
+  img_small: string;
+  img_xsmall: string;
 }

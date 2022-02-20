@@ -1,4 +1,4 @@
-## [Unreleased]
+ ## [Unreleased]
 
 ## [1.0.0] - 2021-12-12
 
@@ -25,13 +25,13 @@
 
 - CartListComponent
 
-## [1.0.3] - 2021-01-03
+## [1.0.3] - 2022-01-03
 
 ### Refactored
 
 - ProductComponent, ProductListComponent, FirstComponent
 
-## [1.0.4] - 2021-01-06
+## [1.0.4] - 2022-01-06
 
 ### Refactored
 
@@ -41,7 +41,7 @@
 
 - Eslint, Prettier
 
-## [1.0.4] - 2021-01-07
+## [1.0.4] - 2022-01-07
 
 ### Added
 
@@ -52,7 +52,7 @@
 
 - AppModule, favicon
 
-## [1.0.5] - 2021-01-08
+## [1.0.5] - 2022-01-08
 
 ### Added
 
@@ -64,7 +64,7 @@
 
 - CartListComponent
 
-## [1.0.6] - 2021-01-09
+## [1.0.6] - 2022-01-09
 
 ### Added
 
@@ -78,14 +78,14 @@
 - AppComponent
 - ChangeDetectionStrategy for FirstComponent, ProductComponent, CartItemComponent
 
-## [1.0.7] - 2021-01-13
+## [1.0.7] - 2022-01-13
 
 ### Refactored 
 
 - Components and services as per comments
 - CartService methods
 
-## [1.0.8] - 2021-01-19
+## [1.0.8] - 2022-01-19
 
 ### Added
 
@@ -93,7 +93,7 @@
 - ConfigOptionsService
 - ConstantsService
 
-## [1.0.9] - 2021-01-23
+## [1.0.9] - 2022-01-23
 
 ### Added
 
@@ -109,7 +109,7 @@
 
 - injected GeneratorFactory, generatedString, ConstantsService, LocalStorageService to FirstComponent  
 
-## [1.0.10] - 2021-01-25
+## [1.0.10] - 2022-01-25
 
 ### Refactored
 
@@ -117,7 +117,7 @@
 - replaced dollar sign with a currency pipe in templates of CartItemComponent, CartListComponent, FirstComponent, ProductComponent;
 - CartService, CartListComponent
 
-## [1.0.11] - 2021-01-28
+## [1.0.11] - 2022-01-28
 
 ### Refactored
 
@@ -127,7 +127,7 @@
 
 - orderBy pipe implementation
 
-## [1.0.12] - 2021-02-01
+## [1.0.12] - 2022-02-01
 
 ### Refactored
 
@@ -136,4 +136,37 @@
 ### Added
 
 - new properties and methods to CartListComponent for sorting and deletion all goods in the cart 
+
+## [1.0.13] - 2022-02-12
+
+### Refactored
+
+- completed app layout refactoring
+- updated data in products.json file
+- added information-block components: ContactsComponent, DeliveryComponent, MainPageComponent, PageNotFoundComponent
+
+
+## [1.0.14] - 2022-02-15
+
+### Added
+
+- routing to the app
+- ProductViewComponent + routing
+
+## [1.0.15] - 2022-02-17
+
+### Added
+
+- ProcessOrderComponent, IsCartEmptyGuard + routing, lazy-loading
+
+## [1.0.16] - 2022-02-20
+
+### Added
+
+- Roles Interface: User and Admin 
+- UserComponent, AdminComponent, AdminOrdersComponent, AdminProductsComponent, UsersGeneralComponent + routing, lazy-loading
+- AuthGuard (implements CanActive, CanActivateChildren, CanLoad)
+- ProductCanDeactivateGuard & ProductResolveGuard (real implementation will be provided later)
+
+
 

@@ -1,0 +1,41 @@
+@import './../shared/styles/variables.less';
+
+.users-general-wrapper {
+  .page-style();
+  min-height: 100vh;
+
+  h2 {
+    margin-top: 100px;
+    color: lightsalmon;
+    text-align: center;
+  }
+}
+
+.btn-wrapper {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.btn {
+  width: 180px;
+  height: 50px;
+  background: coral;
+  color: white;
+  font-weight: 600;
+  border-radius: 10px;
+  border: none;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.8;
+  }
+
+  &:active {
+    box-shadow: 0 0 10px 5px lightgrey;
+  }
+}
+
+.admin {
+  background: #57a9b2;
+}

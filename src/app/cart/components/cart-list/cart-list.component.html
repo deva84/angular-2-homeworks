@@ -1,11 +1,7 @@
-<div class="title-wrapper">
-  <i class="fas fa-cart-arrow-down"></i>
-  <span appTransform [transformColor]="'#5D3FD3'" class="cart-list-title">Cart</span>
-</div>
-<div class="cart-list-wrapper">
-  <div *ngIf="!isEmptyCart; else emptyCart" class="cart-list">
-    <div class="cart-items-wrapper">
-      <div class="cart-items-header">
+<div class="cart-list-wrapper cart-list">
+  <div class="cart-items-wrapper">
+    <div class="cart-items-header" *ngIf="!isEmptyCart; else emptyCart">
+      <div class="left-block">
         <div class="select-wrapper" (click)="onOpenMenu()">
           <div class="select-element">
             <input #sortBy class="cart-items-sort" value="Sort By" readonly>
@@ -37,35 +33,47 @@
             {{orderItem | lowercase | titlecase}}
           </label>
         </div>
-        <button class="cart-items-clear" (click)="onRemoveAllProducts()">
-          <i class="fas fa-times"></i>
-          Clear Cart
-        </button>
       </div>
-      <app-cart-item
-        *ngFor="let item of cartItems | orderBy:sortProperties:currentOrder; trackBy: trackByItems"
-        [item]="item"
-        (itemQuantityIncreased)="onIncreaseQuantity($event)"
-        (itemQuantityDecreased)="onDecreaseQuantity($event)"
-        (itemDeleted)="onRemoveProduct($event)"
-      >
-      </app-cart-item>
+      <button class="cart-items-clear" (click)="onRemoveAllProducts()">
+        <i class="fas fa-times"></i>
+        Clear Cart
+      </button>
     </div>
-    <div class="preorder-wrapper">
-      <h2 class="preorder-title">TOTAL</h2>
-      <div class="total-amount-wrapper">
-        <span class="total-amount-text"><span class="number">{{numberOfItems}}</span> product(s) in total for </span>
-        <span class="total-amount-cash number">{{totalAmount | currency: 'USD'}}</span>
+    <ng-template #emptyCart>
+      <div class="empty-cart">
+        <p class="empty-cart-content"
+          >Cart is empty,<br />
+          but you can always change it :)</p
+        >
       </div>
-      <div class="preorder-button-wrapper">
-        <button class="process-order" (click)="onProcessOrder()">PROCESS ORDER</button>
+    </ng-template>
+    <app-cart-item
+      *ngFor="let item of cartItems | orderBy:sortProperties:currentOrder; trackBy: trackByItems"
+      [item]="item"
+      (itemQuantityIncreased)="onIncreaseQuantity($event)"
+      (itemQuantityDecreased)="onDecreaseQuantity($event)"
+      (itemDeleted)="onRemoveProduct($event)"
+    >
+    </app-cart-item>
+  </div>
+  <div class="preorder-wrapper">
+    <h2 class="preorder-title">Summary</h2>
+    <div class="information">
+      <div class="total-quantity-wrapper">
+        <span>Items {{numberOfItems}}</span>
+        <span>{{totalAmount | currency: 'USD'}}</span>
       </div>
+      <div class="delivery-cost-wrapper">
+        <span>Delivery Fees</span>
+        <span>{{getDeliveryFees() | currency: 'USD'}}</span>
+      </div>
+      <div class="finalized-amount-wrapper">
+        <span>Total</span>
+        <span>{{finalizedAmount | currency: 'USD'}}</span>
+      </div>
+    </div>
+    <div class="preorder-button-wrapper">
+      <button class="process-order" (click)="onProcessOrder()">PROCESS ORDER</button>
     </div>
   </div>
-  <ng-template #emptyCart>
-    <div class="empty-cart">
-      <p class="empty-cart-content">Cart is empty, but you can always change it :)</p>
-    </div>
-  </ng-template>
 </div>
-

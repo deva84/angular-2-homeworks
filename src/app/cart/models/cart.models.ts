@@ -3,6 +3,7 @@ export interface ICartItem {
   name: string;
   quantity: number;
   amount: number;
+  img_xsmall: string;
 }
 
 export interface ICartItemData extends ICartItem {

@@ -2,91 +2,135 @@
   "items": [
     {
       "id": 1,
-      "name": "Cookies",
-      "description": "Contain chocolate crunchies",
+      "name": "Wheat Cookies",
+      "description": "Original Chocolate Chip Cookies, Family Size, 400g",
       "price": 2,
       "category": "bread",
-      "isAvailable": true
+      "isAvailable": true,
+      "img_large": "assets/images/products/large/cookies.jpg",
+      "img_medium": "assets/images/products/medium/cookies.jpg",
+      "img_small": "assets/images/products/small/cookies.jpg",
+      "img_xsmall": "assets/images/products/x_small/cookies.jpg"
     },
     {
       "id": 2,
-      "name": "Beef",
-      "description": "Local farm production",
+      "name": "Beef Ribeye",
+      "description": "Beef Ribeye Steak Large Pack, 1kg. Local farm production",
       "price": 4.7,
       "category": "meat",
-      "isAvailable": true
+      "isAvailable": true,
+      "img_large": "assets/images/products/large/beef.jpg",
+      "img_medium": "assets/images/products/medium/beef.jpg",
+      "img_small": "assets/images/products/small/beef.jpg",
+      "img_xsmall": "assets/images/products/x_small/beef.jpg"
     },
     {
       "id": 3,
-      "name": "Eggs",
-      "description": "Local organic dairy",
+      "name": "Chicken Eggs",
+      "description": "Happy Egg Grade A Organic Free Range Brown Eggs, Large, 10 pcs. Local organic dairy",
       "price": 1.3,
       "category": "dairy",
-      "isAvailable": true
+      "isAvailable": true,
+      "img_large": "assets/images/products/large/eggs.jpg",
+      "img_medium": "assets/images/products/medium/eggs.jpg",
+      "img_small": "assets/images/products/small/eggs.jpg",
+      "img_xsmall": "assets/images/products/x_small/eggs.jpg"
     },
     {
       "id": 4,
-      "name": "Lemonade",
-      "description": "Contains orange juice",
+      "name": "Lemonade Drink",
+      "description": "Minute Maid Lemonade Made w/ Real Lemons and Orange Juice, 1L",
       "price": 0.7,
       "category": "beverages",
-      "isAvailable": true
+      "isAvailable": true,
+      "img_large": "assets/images/products/large/lemonade.jpg",
+      "img_medium": "assets/images/products/medium/lemonade.jpg",
+      "img_small": "assets/images/products/small/lemonade.jpg",
+      "img_xsmall": "assets/images/products/x_small/lemonade.jpg"
     },
     {
       "id": 5,
-      "name": "Spring onions",
-      "description": "Super fresh foods",
+      "name": "Spring Onions",
+      "description": "Marketside Organic Green Onions. Super fresh foods, 1 bunch",
       "price": 0.3,
       "category": "green grocery",
-      "isAvailable": true
+      "isAvailable": true,
+      "img_large": "assets/images/products/large/onion.jpg",
+      "img_medium": "assets/images/products/medium/onion.jpg",
+      "img_small": "assets/images/products/small/onion.jpg",
+      "img_xsmall": "assets/images/products/x_small/onion.jpg"
     },
     {
       "id": 6,
       "name": "Red Caviar",
-      "description": "Baltic salmon caviar",
+      "description": "Baltic Salmon Caviar has a slight ocean aroma, delicately tender, 200g",
       "price": 10.5,
       "category": "delicatessen",
-      "isAvailable": true
+      "isAvailable": true,
+      "img_large": "assets/images/products/large/caviar.jpg",
+      "img_medium": "assets/images/products/medium/caviar.jpg",
+      "img_small": "assets/images/products/small/caviar.jpg",
+      "img_xsmall": "assets/images/products/x_small/caviar.jpg"
     },
     {
       "id": 7,
-      "name": "Shrimps",
-      "description": "Tiger shrimps from Indian Ocean",
+      "name": "Frozen Shrimp",
+      "description": "Frozen Cooked Extra Large Peeled & Deveined, Tail-On Shrimp, from Indian Ocean, 1 kg",
       "price": 6.4,
       "category": "seafood",
-      "isAvailable": false
+      "isAvailable": false,
+      "img_large": "assets/images/products/large/shrimps.jpg",
+      "img_medium": "assets/images/products/medium/shrimps.jpg",
+      "img_small": "assets/images/products/small/shrimps.jpg",
+      "img_xsmall": "assets/images/products/x_small/shrimps.jpg"
     },
     {
       "id": 8,
-      "name": "Buckwheat",
-      "description": "Whole grain, organic",
+      "name": "Buckwheat Groats",
+      "description": "Toasted Whole Groats, Non-GMO, Kosher, Sirtfood, Bulk, 1kg",
       "price": 2.3,
       "category": "health & beauty",
-      "isAvailable": true
+      "isAvailable": true,
+      "img_large": "assets/images/products/large/buckwheat2.jpg",
+      "img_medium": "assets/images/products/medium/buckwheat2.jpg",
+      "img_small": "assets/images/products/small/buckwheat2.jpg",
+      "img_xsmall": "assets/images/products/x_small/buckwheat2.jpg"
     },
     {
       "id": 9,
-      "name": "Buckwheat",
-      "description": "Green buckwheat rich with fiber",
+      "name": "Green Buckwheat",
+      "description": "Certified Organic Buckwheat Groats (Raw, Hulled, Non-GMO, Bulk) , Rich on Fiber, 1kg",
       "price": 2.7,
       "category": "health & beauty",
-      "isAvailable": true
+      "isAvailable": true,
+      "img_large": "assets/images/products/large/buckwheat3.jpg",
+      "img_medium": "assets/images/products/medium/buckwheat3.jpg",
+      "img_small": "assets/images/products/small/buckwheat3.jpg",
+      "img_xsmall": "assets/images/products/x_small/buckwheat3.jpg"
     },
     {
       "id": 10,
-      "name": "Buckwheat",
-      "description": "Imported dry flakes for everyday meal",
+      "name": "Buckwheat Flakes",
+      "description": "Organic Gluten Free Buckwheat dry flakes for everyday meal, 400g",
       "price": 1.7,
       "category": "health & beauty",
-      "isAvailable": true
+      "isAvailable": true,
+      "img_large": "assets/images/products/large/buckwheat1.jpg",
+      "img_medium": "assets/images/products/medium/buckwheat1.jpg",
+      "img_small": "assets/images/products/small/buckwheat1.jpg",
+      "img_xsmall": "assets/images/products/x_small/buckwheat1.jpg"
     },
     {
       "id": 11,
-      "name": "Oysters",
-      "description": "Limited import from France",
+      "name": "Frozen Oysters",
+      "description": "Premium Select Whole Frozen Oysters, Limited Import from France, 1kg",
       "price": 15.9,
       "category": "seafood",
-      "isAvailable": true
+      "isAvailable": true,
+      "img_large": "assets/images/products/large/oysters1.jpg",
+      "img_medium": "assets/images/products/medium/oysters1.jpg",
+      "img_small": "assets/images/products/small/oysters1.jpg",
+      "img_xsmall": "assets/images/products/x_small/oysters1.jpg"
     }
   ]
 }

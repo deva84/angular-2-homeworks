@@ -5,31 +5,30 @@
   align-items: center;
   justify-content: space-between;
   text-align: center;
-  margin: 10px;
-  padding: 10px;
-  width: 200px;
-  height: 170px;
+  width: 199px;
+  height: 205px;
   box-sizing: border-box;
-  border: 3px dotted lavender;
+  border: 3px solid lavender;
 }
 
 .title {
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 14px;
 }
 
+.product-info {
+  display: flex;
+  align-items: baseline;
+}
 .description {
   padding: 5px 0 10px;
 }
 
 .price {
-  display: inline-block;
-  margin-bottom: 5px;
-  font-weight: 600;
   color: cadetblue;
 }
 
 .availability {
+  padding-bottom: 5px;
   font-size: 12px;
 }
 
@@ -39,17 +38,14 @@
   margin-top: 15px;
   font-size: 12px;
 }
+
 .out-of-stock {
+  padding-bottom: 5px;
   font-size: 12px;
   color: red;
 }
 
 .add-to-cart {
-  display: none;
-  position: absolute;
-  top: 35%;
-  left: 5%;
-  z-index: 100;
   width: 180px;
   height: 50px;
   background: orange;
@@ -60,6 +56,7 @@
 
   &:hover {
     cursor: pointer;
+    opacity: 0.7;
   }
 
   &:active {
@@ -72,16 +69,14 @@
   z-index: 50;
   top: -3px;
   width: 200px;
-  height: 170px;
+  height: 205px;
   background: transparent;
-
-  &:hover {
-    .add-to-cart {
-      display: block;
-    }
-  }
 }
 
 .btn-disabled {
   background: lightgrey;
+
+  &:hover {
+    opacity: 1;
+  }
 }
