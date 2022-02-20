@@ -1,0 +1,22 @@
+<div class="main-wrapper">
+  <div #mainPicContainer class="main-pic">
+    <p class="main-pic-text left">{{ promoTextLeft | uppercase}}</p>
+    <p class="main-pic-text right">{{promoTextRight | uppercase}}</p>
+  </div>
+</div>
+<div class="promo-wrapper">
+  <div class="promo-title">
+    <h2>Special Offers</h2>
+    <div class="arrow bounce">
+      <a class="fa fa-arrow-down" routerLink="" fragment="img"></a>
+    </div>
+  </div>
+  <div class="special-offer-wrapper">
+    <img id="img" class="special-offer-img"
+         *ngFor="let item of specialOfferItems; let i = index"
+         [id]="i"
+         [src]="item.img_medium"
+         (click)="onOpenProductPage($event)"
+    >
+  </div>
+</div>

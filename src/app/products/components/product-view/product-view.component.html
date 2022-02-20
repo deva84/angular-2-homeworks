@@ -1,0 +1,30 @@
+<div class="wrapper">
+  <div class="product-card-view" *ngIf="product">
+    <img [src]="product.img_large">
+    <div class="product-details">
+      <div class="product-name-wrapper">
+        <h3 class="product-name">{{product.name}}</h3>
+        <span [class]="product.category" class="category">
+          <i class="fas fa-tags"></i>
+          <span>{{product.category | titlecase}}</span>
+        </span>
+      </div>
+      <p class="product-description">{{product.description}}</p>
+      <p class="product-availability">
+        <span *ngIf="product.isAvailable; else notAvailable" class="availability in-stock">Available</span>
+        <ng-template #notAvailable>
+          <span class="out-of-stock">Out of stock</span>
+        </ng-template>
+      </p>
+      <div class="btn-wrapper">
+        <button
+          (click)="onAddToCart()"
+          [disabled]="!product.isAvailable"
+          [class.btn-disabled]="!product.isAvailable"
+          class="add-to-cart">
+          ADD TO CART
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

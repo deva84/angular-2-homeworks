@@ -2,49 +2,9 @@ import { Component, DoCheck, ElementRef, OnInit, Renderer2, ViewChild } from '@a
 import { CartService } from '../../services/cart.service';
 import { ICartItem } from '../../models/cart.models';
 import { Order } from '../../../shared/pipes/order-by.pipe';
+import { Router } from '@angular/router';
 
 export type SortProperty = 'price' | 'quantity' | 'name';
-
-export interface ISortOption {
-  properties: SortProperty[];
-  order?: Order;
-}
-
-export type ISortOptions = Record<string, ISortOption>;
-
-// не совсем понятно для чего мне эти проперти
-export const sortOptions: ISortOptions = {
-  a: { properties: ['price', 'quantity', 'name'], order: 'ASC' },
-  b: { properties: ['quantity', 'price', 'name'], order: 'ASC' },
-  c: { properties: ['quantity', 'name', 'price'], order: 'ASC' },
-  d: { properties: ['price', 'name', 'quantity'], order: 'ASC' },
-  e: { properties: ['name', 'price', 'quantity'], order: 'ASC' },
-  f: { properties: ['name', 'quantity', 'price'], order: 'ASC' },
-  g: { properties: ['price', 'quantity'], order: 'ASC' },
-  h: { properties: ['quantity', 'price'], order: 'ASC' },
-  i: { properties: ['quantity', 'name'], order: 'ASC' },
-  j: { properties: ['name', 'quantity'], order: 'ASC' },
-  k: { properties: ['price', 'name'], order: 'ASC' },
-  l: { properties: ['name', 'price'], order: 'ASC' },
-  m: { properties: ['price'], order: 'ASC' },
-  n: { properties: ['quantity'], order: 'ASC' },
-  o: { properties: ['name'], order: 'ASC' },
-  p: { properties: ['price', 'quantity', 'name'] },
-  r: { properties: ['quantity', 'price', 'name'] },
-  s: { properties: ['quantity', 'name', 'price'] },
-  t: { properties: ['price', 'name', 'quantity'] },
-  u: { properties: ['name', 'price', 'quantity'] },
-  v: { properties: ['name', 'quantity', 'price'] },
-  w: { properties: ['price', 'quantity'] },
-  x: { properties: ['quantity', 'price'] },
-  y: { properties: ['quantity', 'name'] },
-  z: { properties: ['name', 'quantity'] },
-  aa: { properties: ['price', 'name'] },
-  ab: { properties: ['name', 'price'] },
-  ac: { properties: ['price'] },
-  ad: { properties: ['quantity'] },
-  ae: { properties: ['name'] },
-};
 
 @Component({
   selector: 'app-cart-list',
@@ -63,11 +23,16 @@ export class CartListComponent implements OnInit, DoCheck {
   orderOptions: Order[] = ['ASC', 'DESC'];
   currentOrder: Order = 'DESC';
   sortProperties: SortProperty[] | undefined;
+  finalizedAmount = 0;
 
   private dropdownOpened = false;
   private sortOptionsSelected: SortProperty[] = [];
 
-  constructor(private cartService: CartService, private renderer2: Renderer2) {
+  constructor(
+    private cartService: CartService,
+    private renderer2: Renderer2,
+    private router: Router
+  ) {
     this.renderer2.listen('window', 'click', (e: Event) => {
       if (
         this.checkboxesEl &&
@@ -88,6 +53,7 @@ export class CartListComponent implements OnInit, DoCheck {
     this.totalAmount = this.cartService.getTotalCartAmount();
     this.numberOfItems = this.cartService.getNumberOfItems();
     this.isEmptyCart = this.cartService.isCartEmpty();
+    this.finalizedAmount = this.cartService.finalizeCartAmount(this.getDeliveryFees());
   }
 
   trackByItems(index: number, item: ICartItem): number {
@@ -107,9 +73,7 @@ export class CartListComponent implements OnInit, DoCheck {
   }
 
   onProcessOrder(): void {
-    console.log(
-      "Order is being processed! You'll be directed to a new page to complete your order."
-    );
+    void this.router.navigate(['/order']);
   }
 
   onOpenMenu(): void {
@@ -154,5 +118,9 @@ export class CartListComponent implements OnInit, DoCheck {
     this.sortOptionsSelected = [];
     this.sortProperties = undefined;
     this.currentOrder = 'DESC';
+  }
+
+  getDeliveryFees(): number {
+    return this.isEmptyCart ? 0 : 5.95;
   }
 }

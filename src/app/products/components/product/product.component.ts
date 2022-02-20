@@ -10,14 +10,9 @@ import { Category, IProductModel } from '../../models/products.models';
 export class ProductComponent {
   @Input() product!: IProductModel;
 
-  @Output() itemAddedToCart = new EventEmitter<Partial<IProductModel>>();
+  @Output() itemPageOpened = new EventEmitter<IProductModel>();
 
-  onAddToCart(): void {
-    this.itemAddedToCart.emit({
-      id: this.product.id,
-      name: this.product.name,
-      price: this.product.price,
-    });
-    console.log(`${this.product.name} has been added to your cart!`);
+  onOpenProductPage(): void {
+    this.itemPageOpened.emit(this.product);
   }
 }

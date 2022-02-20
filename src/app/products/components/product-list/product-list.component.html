@@ -1,10 +1,8 @@
-<h1 appTransform class="product-list-title">Product List</h1>
-
 <div class="products-wrapper">
-  <app-first></app-first>
+  <app-first (firstItemPageOpened)="onOpenProductPage($event)"></app-first>
   <app-product
     *ngFor="let item of (products$ | async)"
     [product]="item"
-    (itemAddedToCart)="onItemAddedToCart($event)"
+    (itemPageOpened)="onOpenProductPage($event)"
   ></app-product>
 </div>

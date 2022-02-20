@@ -1,4 +1,8 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { LocalStorageService } from './core/services/local-storage/local-storage.service';
+import { Router } from '@angular/router';
+import { AuthService } from './core/services/auth/auth.service';
+import { Role } from './core/core.models';
 
 @Component({
   selector: 'app-root',
@@ -6,12 +10,33 @@ import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
   styleUrls: ['./app.component.less'],
 })
 export class AppComponent implements AfterViewInit {
-  @ViewChild('appTitle') title: ElementRef<HTMLHeadingElement> | undefined;
-  @ViewChild('contacts') contactInfo: ElementRef<HTMLElement> | undefined;
+  @ViewChild('appTitle') title!: ElementRef<HTMLHeadingElement>;
 
-  ngAfterViewInit() {
-    if (this.title) this.title.nativeElement.innerText = 'Small Grocery Store';
-    if (this.contactInfo)
-      this.contactInfo.nativeElement.innerHTML = `2 St John's Str.<br> New Jersey, NJ, US<br> Phone: +1-862-111-1111`;
+  @HostListener('window:beforeunload')
+  public beforeunloadHandler() {
+    this.localStorage.deleteItem('cartItems');
+  }
+
+  constructor(
+    private localStorage: LocalStorageService,
+    private router: Router,
+    private authService: AuthService
+  ) {}
+
+  ngAfterViewInit(): void {
+    this.title.nativeElement.innerText = 'Green Day';
+  }
+
+  get isAuthorized() {
+    return this.authService.isAuthorized();
+  }
+
+  get isAdmin() {
+    return this.authService.hasRole(Role.Admin);
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['']);
   }
 }

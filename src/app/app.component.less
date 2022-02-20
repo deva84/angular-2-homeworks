@@ -4,50 +4,102 @@
   display: block;
   font-family: @primaryTextFont;
   color: @primaryTextColor;
-  background: #f3f3ff;
+  background: url('../assets/images/pic20.jpg') no-repeat;
+  background-size: cover;
 }
 
 .header-wrapper {
-  padding: 10px;
-  color: ghostwhite;
-  background: darkkhaki;
-  box-sizing: border-box;
-}
-
-.inner-wrapper {
+  position: fixed;
+  width: 100%;
+  background: #fff4e7;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
+  padding: 10px 50px;
+  color: #97b85e;
+  box-shadow: 0 0 10px #bababa;
   box-sizing: border-box;
-}
-
-.main-page-photo,
-.inner-wrapper {
-  margin: 0 auto;
-  width: 900px;
+  z-index: 100;
 }
 
 .title-wrapper {
   display: flex;
+  align-items: center;
   column-gap: 10px;
 
-  i {
-    font-size: 32px;
+  i, h1 {
+    font-size: 24px;
   }
-}
 
-.main-page-photo {
-  height: 300px;
-  background: url('../assets/images/header-pic.jpg') center center no-repeat;
-  background-size: cover;
+  h1 {
+    font-family: 'Merienda', cursive;
+    font-weight: 400;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .app-title {
   margin: 0;
 }
 
-.contacts {
-  font-size: 14px;
-  line-height: 1.5;
+.nav-bar {
+  display: flex;
+  list-style: none;
+  column-gap: 40px;
+  color: @primaryTextColor;
+
+  a {
+    color: @primaryTextColor;
+    text-decoration: none;
+
+    &:hover {
+      color: #4ccdda;
+    }
+  }
+}
+
+.right-tabs {
+  margin-left: auto;
+  display: flex;
+  column-gap: 20px
+}
+
+.cart-icon-wrapper,
+.active-cart,
+.user-icon-wrapper,
+.active-user {
+  width: 30px;
+  background-size: contain !important;
+}
+
+.cart-icon-wrapper {
+  background: url('../assets/images/bag.png') center center no-repeat;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.active-tab {
+  a {
+    color: #4ccdda;
+    text-decoration: underline;
+  }
+}
+
+.active-cart {
+  background: url('../assets/images/bag_active.png') center center no-repeat;
+}
+
+.user-icon-wrapper {
+  background: url('../assets/images/user.png') center center no-repeat;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.active-user {
+  background: url('../assets/images/user_active.png') center center no-repeat;
 }

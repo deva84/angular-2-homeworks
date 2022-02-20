@@ -3,6 +3,7 @@ import { ProductService } from '../../services/product.service';
 import { IProductModel } from '../../models/products.models';
 import { CartService } from '../../../cart/services/cart.service';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
@@ -12,13 +13,18 @@ import { Observable } from 'rxjs';
 export class ProductListComponent implements OnInit {
   products$!: Observable<IProductModel[]>;
 
-  constructor(private productService: ProductService, private cartService: CartService) {}
+  constructor(
+    private productService: ProductService,
+    private cartService: CartService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.products$ = this.productService.getProducts();
   }
 
-  onItemAddedToCart(item: Partial<IProductModel>): void {
-    this.cartService.addProduct(item.id as number, item.name as string, item.price as number);
+  onOpenProductPage(item: IProductModel): void {
+    const link = ['/product', item.id];
+    this.router.navigate(link);
   }
 }

@@ -1,22 +1,16 @@
 <div class="product">
-  <span class="title">{{product.name}}</span>
-  <div class="description">{{product.description}}</div>
-  <span class="price">{{product.price | currency: 'USD'}}</span>
+  <img [src]="product.img_small">
+  <div class="product-info">
+    <span class="title">{{product.name}}</span>
+    <span class="price">{{product.price | currency: 'USD'}}</span>
+  </div>
   <span *ngIf="product.isAvailable; else notAvailable" class="availability">Available</span>
   <ng-template #notAvailable>
     <span class="out-of-stock">Out of stock</span>
   </ng-template>
-  <div class="category-wrapper">
-    <i class="fas fa-tags"></i>
-    <span class="category">{{product.category | titlecase}}</span>
-  </div>
-  <div class="hover-layer" appHighlight>
-    <button
-      (click)="onAddToCart()"
-      [disabled]="!product.isAvailable"
-      [class.btn-disabled]="!product.isAvailable"
-      class="add-to-cart">
-      ADD TO CART
-    </button>
+  <div class="hover-layer"
+       appHighlight
+       (click)="onOpenProductPage()"
+  >
   </div>
 </div>

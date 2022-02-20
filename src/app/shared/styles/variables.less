@@ -1,2 +1,29 @@
 @primaryTextColor: slategrey;
 @primaryTextFont: 'Verdana', sans-serif;
+
+// mixins
+
+.page-style {
+  width: 900px;
+  margin: 0 auto;
+  padding: 10px 50px;
+  box-sizing: border-box;
+  background: whitesmoke;
+}
+
+.title-style {
+  padding: 80px 0 20px;
+  text-align: center;
+  color: lightsalmon;
+}
+
+.category-color() {
+  meat: #c61a5a;
+  seafood: #57a9b2;
+  delicatessen: #f88adb;
+  green: #2f8619;
+  bread: #eeaa2e;
+  beverages: #cac533;
+  health: #bdd462;
+  dairy: #7cc4f8;
+}

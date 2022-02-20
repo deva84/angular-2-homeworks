@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ICartItemData } from '../models/cart.models';
+import { LocalStorageService } from '../../core/services/local-storage/local-storage.service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,17 +11,19 @@ export class CartService {
   private totalQuantity = 0;
   private isEmptyCart = true;
 
+  constructor(private localStorage: LocalStorageService) {}
+
   getProducts(): ICartItemData[] {
     return this.cartProducts;
   }
 
-  addProduct(id: number, name: string, price: number, quantity = 1): void {
+  addProduct(id: number, name: string, price: number, img: string, quantity = 1): void {
     const itemToAdd = this.cartProducts.find((item) => item.id === id);
 
     if (!itemToAdd) {
       this.cartProducts = [
         ...this.cartProducts,
-        { id: id, name: name, quantity: quantity, price: price, amount: price },
+        { id: id, name: name, quantity: quantity, price: price, amount: price, img_xsmall: img },
       ];
     } else {
       this.cartProducts = this.cartProducts.map((item) => {
@@ -45,6 +48,7 @@ export class CartService {
     this.totalSum = this.cartProducts.map((item) => item.amount).reduce((a, b) => a + b, 0);
     this.totalQuantity = this.cartProducts.map((item) => item.quantity).reduce((a, b) => a + b, 0);
     this.isEmptyCart = this.totalQuantity <= 0;
+    this.saveCartItems();
   }
 
   getTotalCartAmount(): number {
@@ -100,5 +104,17 @@ export class CartService {
 
   isCartEmpty(): boolean {
     return this.isEmptyCart;
+  }
+
+  finalizeCartAmount(fees: number): number {
+    return this.totalSum + fees;
+  }
+
+  saveCartItems(): void {
+    if (this.isEmptyCart) {
+      this.localStorage.deleteItem('cartItems');
+    } else {
+      this.localStorage.setItem('cartItems', this.cartProducts);
+    }
   }
 }

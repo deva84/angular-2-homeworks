@@ -1,5 +1,13 @@
-import { ChangeDetectionStrategy, Component, Inject, OnInit, Optional } from '@angular/core';
-import { Category } from '../../models/products.models';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Inject,
+  OnInit,
+  Optional,
+  Output,
+} from '@angular/core';
+import { Category, IProductModel } from '../../models/products.models';
 import { constants, ConstantsService } from '../../../core/services/constants/constants.service';
 import { GeneratorFactory } from '../../../core/services/generator/generator.factory';
 import {
@@ -11,31 +19,33 @@ import {
   localStore,
 } from '../../../core/services/local-storage/local-storage.service';
 
+export const firstComponentItem: IProductModel = {
+  id: 0,
+  name: 'Whole Milk',
+  description: 'Great Value Whole Vitamin D Milk, 1L, 3% fat',
+  price: 1.2,
+  category: Category.DAIRY,
+  isAvailable: false,
+  img_large: 'assets/images/products/large/milk.jpg',
+  img_medium: 'assets/images/products/medium/milk.jpg',
+  img_small: 'assets/images/products/small/milk.jpg',
+  img_xsmall: 'assets/images/products/x_small/milk.jpg',
+};
+
 @Component({
   selector: 'app-first',
   template: `
     <div class="product">
-      <span class="title">{{ name }}</span>
-      <div class="description">{{ description }}</div>
-      <span class="price">{{ price | currency: 'USD' }}</span>
-      <span *ngIf="isAvailable; else notAvailable" class="availability">Available</span>
+      <img [src]="firstItem.img_small" />
+      <div class="product-info">
+        <span class="title">{{ firstItem.name }}</span>
+        <span class="price">{{ firstItem.price | currency: 'USD' }}</span>
+      </div>
+      <span *ngIf="firstItem.isAvailable; else notAvailable" class="availability">Available</span>
       <ng-template #notAvailable>
         <span class="out-of-stock">Out of stock</span>
       </ng-template>
-      <div class="category-wrapper">
-        <i class="fas fa-tags"></i>
-        <span class="category">{{ category | titlecase }}</span>
-      </div>
-      <div class="hover-layer" appHighlight>
-        <button
-          (click)="onAddToCart()"
-          [disabled]="!isAvailable"
-          [class.btn-disabled]="!isAvailable"
-          class="add-to-cart"
-        >
-          ADD TO CART
-        </button>
-      </div>
+      <div class="hover-layer" appHighlight (click)="onOpenProductPage()"> </div>
     </div>
   `,
   styleUrls: ['./first.component.less'],
@@ -47,11 +57,9 @@ import {
   ],
 })
 export class FirstComponent implements OnInit {
-  public name = 'Milk';
-  public description = '3% fat';
-  public price = 1.2;
-  public category = Category.DAIRY;
-  public isAvailable = false;
+  @Output() firstItemPageOpened = new EventEmitter<IProductModel>();
+
+  public firstItem = firstComponentItem;
 
   constructor(
     @Optional() private constantsService: ConstantsService,
@@ -60,7 +68,7 @@ export class FirstComponent implements OnInit {
     @Optional() private ls: LocalStorageService
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     Object.entries(this.constantsService.getAppData()).forEach(([key, value]) =>
       console.log(`${key}: ${value}`)
     );
@@ -74,7 +82,7 @@ export class FirstComponent implements OnInit {
     console.log('Local Storage Service: ', this.ls.getItem('initial-item'));
   }
 
-  onAddToCart(): void {
-    console.log(`${this.name} has been added to your cart!`);
+  onOpenProductPage(): void {
+    this.firstItemPageOpened.emit(this.firstItem);
   }
 }
