@@ -17,7 +17,7 @@ export class AuthService {
 
   login(role: Role) {
     console.log('!!! ', role);
-    this.user = { role: role };
+    this.user = { role };
   }
 
   logout() {

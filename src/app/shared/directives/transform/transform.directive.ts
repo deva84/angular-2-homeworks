@@ -10,6 +10,8 @@ export class TransformDirective implements OnInit, OnDestroy {
 
   constructor(private el: ElementRef, private renderer: Renderer2) {}
 
+  // Думаю, что этот функционал можно реализовать через @HostListener и тогда не надо будет
+  // вручную все делать
   ngOnInit(): void {
     this.eventListener = this.renderer.listen(this.el.nativeElement, 'click', () => {
       this.el.nativeElement.style.color = this.color;

@@ -9,7 +9,7 @@ import { AuthService } from '../core/services/auth/auth.service';
   styleUrls: ['./users-general.component.less'],
 })
 export class UsersGeneralComponent {
-  Role = Role;
+  Role = Role;  // для чего эта строчка, если this.Role нигде не используется?
 
   constructor(private router: Router, private authService: AuthService) {}
 
