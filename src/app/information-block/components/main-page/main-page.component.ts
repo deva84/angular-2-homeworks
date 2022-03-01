@@ -17,6 +17,7 @@ export class MainPageComponent implements OnInit {
   constructor(private productService: ProductService, private router: Router) {}
 
   ngOnInit(): void {
+    // а как по поводу отписки?
     this.productService.getProducts().subscribe((products) => {
       const ids = this.getRandomProductIds(products.length);
       ids.forEach((id) => this.specialOfferItems.push(products.find((prod) => prod.id === id)!));
